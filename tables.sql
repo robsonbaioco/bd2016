@@ -1,4 +1,3 @@
-
 -- -----------------------------------------------------
 -- Table Fornecedor
 -- -----------------------------------------------------
@@ -14,7 +13,7 @@ CREATE TABLE IF NOT EXISTS Fornecedor (
   representante VARCHAR(45) NULL,
   Funcionario_ID_func INT NOT NULL,
   PRIMARY KEY (ID_fornecedor),
-  CONSTRAINT fk_Fornecedor_Funcionario1
+  
 );
 
 
@@ -30,7 +29,6 @@ CREATE TABLE IF NOT EXISTS Cep_cidade (
   Fornecedor_ID_fornecedor INT NOT NULL,
   Fornecedor_Cep_cidade_cep INT NOT NULL,
   PRIMARY KEY (cep),
-  CONSTRAINT fk_Cep_cidade_Fornecedor1
     FOREIGN KEY (Fornecedor_ID_fornecedor)
     REFERENCES Fornecedor (ID_fornecedor)
 );
@@ -53,11 +51,9 @@ CREATE TABLE IF NOT EXISTS Funcionario (
   Cep_cidade_cep INT NOT NULL,
   eh_almoxarife INT NULL,
   PRIMARY KEY (ID_func),
-  CONSTRAINT fk_Funcionario_Funcionario
     FOREIGN KEY (ID_almoxarife)
     REFERENCES Funcionario (ID_func)
 ,
-  CONSTRAINT fk_Funcionario_Cep_cidade1
     FOREIGN KEY (Cep_cidade_cep)
     REFERENCES Cep_cidade (cep)
 )
@@ -91,7 +87,6 @@ CREATE TABLE IF NOT EXISTS Material (
   validade VARCHAR(45) NULL,
   Info_Material_ID_material INT NOT NULL,
   PRIMARY KEY (ID_material, Info_Material_ID_material),
-  CONSTRAINT fk_Material_Info_Material1
     FOREIGN KEY (Info_Material_ID_material)
     REFERENCES Info_Material (ID_material)
 )
@@ -108,7 +103,6 @@ CREATE TABLE IF NOT EXISTS Requisicao (
   ID_req VARCHAR(45) NOT NULL,
   Funcionario_ID_func INT NOT NULL,
   PRIMARY KEY (ID_req),
-  CONSTRAINT fk_Requisicao_Funcionario1
     FOREIGN KEY (Funcionario_ID_func)
     REFERENCES Funcionario (ID_func)
 )
@@ -126,11 +120,9 @@ CREATE TABLE IF NOT EXISTS Item_lista_req (
   Material_ID_material INT NOT NULL,
   Material_Info_Material_ID_material INT NOT NULL,
   PRIMARY KEY (seq_item, Requisicao_ID_req),
-  CONSTRAINT fk_Item_lista_req_Requisicao1
     FOREIGN KEY (Requisicao_ID_req)
     REFERENCES Requisicao (ID_req)
 ,
-  CONSTRAINT fk_Item_lista_req_Material1
     FOREIGN KEY (Material_ID_material , Material_Info_Material_ID_material)
     REFERENCES Material (ID_material , Info_Material_ID_material)
 )
@@ -147,7 +139,6 @@ CREATE TABLE IF NOT EXISTS Entrada (
   ID_entrada VARCHAR(45) NOT NULL,
   Fornecedor_ID_fornecedor INT NOT NULL,
   PRIMARY KEY (ID_entrada, Fornecedor_ID_fornecedor),
-  CONSTRAINT fk_Entrada_Fornecedor1
     FOREIGN KEY (Fornecedor_ID_fornecedor)
     REFERENCES Fornecedor (ID_fornecedor)
 )
@@ -164,11 +155,9 @@ CREATE TABLE IF NOT EXISTS Item_lista_ent (
   Material_ID_material INT NOT NULL,
   Material_Info_Material_ID_material INT NOT NULL,
   PRIMARY KEY (seq_item, Entrada_ID_entrada),
-  CONSTRAINT fk_Item_lista_ent_Entrada1
     FOREIGN KEY (Entrada_ID_entrada)
     REFERENCES Entrada (ID_entrada)
 ,
-  CONSTRAINT fk_Item_lista_ent_Material1
     FOREIGN KEY (Material_ID_material , Material_Info_Material_ID_material)
     REFERENCES Material (ID_material , Info_Material_ID_material)
 )
@@ -181,7 +170,6 @@ DROP TABLE IF EXISTS Tel_func ;
 CREATE TABLE IF NOT EXISTS Tel_func (
   telefone INT NULL,
   Funcionario_ID_func INT NOT NULL,
-  CONSTRAINT fk_Tel_func_Funcionario1
     FOREIGN KEY (Funcionario_ID_func)
     REFERENCES Funcionario (ID_func)
 )
@@ -196,7 +184,6 @@ CREATE TABLE IF NOT EXISTS Tel_fornec (
   telefone INT NOT NULL,
   Fornecedor_ID_fornecedor INT NOT NULL,
   PRIMARY KEY (telefone),
-  CONSTRAINT fk_Tel_fornec_Fornecedor1
     FOREIGN KEY (Fornecedor_ID_fornecedor)
     REFERENCES Fornecedor (ID_fornecedor)
 )
@@ -211,7 +198,6 @@ CREATE TABLE IF NOT EXISTS Almoxarife (
   total_horas INT NULL,
   Funcionario_ID_func INT NOT NULL,
   PRIMARY KEY (Funcionario_ID_func),
-  CONSTRAINT fk_Almoxarife_Funcionario1
     FOREIGN KEY (Funcionario_ID_func)
     REFERENCES Funcionario (ID_func)
 )
@@ -239,11 +225,9 @@ CREATE TABLE IF NOT EXISTS Trabalha (
   Almoxarife_Funcionario_ID_func INT NOT NULL,
   turno VARCHAR(45) NULL,
   PRIMARY KEY (Local_armazenamento_setor, Local_armazenamento_nome, Almoxarife_Funcionario_ID_func),
-  CONSTRAINT fk_Local_armazenamento_has_Almoxarife_Local_armazenamento1
     FOREIGN KEY (Local_armazenamento_setor , Local_armazenamento_nome)
     REFERENCES Local_armazenamento (setor , nome)
 ,
-  CONSTRAINT fk_Local_armazenamento_has_Almoxarife_Almoxarife1
     FOREIGN KEY (Almoxarife_Funcionario_ID_func)
     REFERENCES Almoxarife (Funcionario_ID_func)
 )
@@ -260,11 +244,10 @@ CREATE TABLE IF NOT EXISTS Armazena (
   Material_ID_material INT NOT NULL,
   quantidade INT NULL,
   PRIMARY KEY (Local_armazenamento_setor, Local_armazenamento_nome, Material_ID_material),
-  CONSTRAINT fk_Local_armazenamento_has_Material_Local_armazenamento1
     FOREIGN KEY (Local_armazenamento_setor , Local_armazenamento_nome)
     REFERENCES Local_armazenamento (setor , nome)
 ,
-  CONSTRAINT fk_Local_armazenamento_has_Material_Material1
+
     FOREIGN KEY (Material_ID_material)
     REFERENCES Material (ID_material)
 )
