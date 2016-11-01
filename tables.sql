@@ -15,8 +15,6 @@ CREATE TABLE IF NOT EXISTS Fornecedor (
   Funcionario_ID_func INT NOT NULL,
   PRIMARY KEY (ID_fornecedor),
   CONSTRAINT fk_Fornecedor_Funcionario1
-    FOREIGN KEY (Funcionario_ID_func)
-    REFERENCES Funcionario (ID_func)
 );
 
 
@@ -270,4 +268,9 @@ CREATE TABLE IF NOT EXISTS Armazena (
     FOREIGN KEY (Material_ID_material)
     REFERENCES Material (ID_material)
 )
+;
+ALTER TABLE Fornecedor (
+	ADD FOREIGN KEY (Funcionario_ID_func)
+  REFERENCES  Funcionario  (ID_func)
+	)
 ;
