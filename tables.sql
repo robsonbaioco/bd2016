@@ -17,11 +17,7 @@ CREATE TABLE IF NOT EXISTS Fornecedor (
   CONSTRAINT fk_Fornecedor_Funcionario1
     FOREIGN KEY (Funcionario_ID_func)
     REFERENCES Funcionario (ID_func)
-)
-;
-
-
-
+);
 
 
 -- -----------------------------------------------------
@@ -39,11 +35,7 @@ CREATE TABLE IF NOT EXISTS Cep_cidade (
   CONSTRAINT fk_Cep_cidade_Fornecedor1
     FOREIGN KEY (Fornecedor_ID_fornecedor)
     REFERENCES Fornecedor (ID_fornecedor)
-)
-;
-
-
-
+);
 
 -- -----------------------------------------------------
 -- Table Funcionario
@@ -73,8 +65,6 @@ CREATE TABLE IF NOT EXISTS Funcionario (
 )
 ;
 
-
-
 -- -----------------------------------------------------
 -- Table Info_Material
 -- -----------------------------------------------------
@@ -90,7 +80,6 @@ CREATE TABLE IF NOT EXISTS Info_Material (
   ID_material INT NOT NULL,
   PRIMARY KEY (ID_material))
 ;
-
 
 -- -----------------------------------------------------
 -- Table Material
@@ -110,7 +99,6 @@ CREATE TABLE IF NOT EXISTS Material (
 )
 ;
 
-
 -- -----------------------------------------------------
 -- Table Requisicao
 -- -----------------------------------------------------
@@ -127,8 +115,6 @@ CREATE TABLE IF NOT EXISTS Requisicao (
     REFERENCES Funcionario (ID_func)
 )
 ;
-
-
 
 -- -----------------------------------------------------
 -- Table Item_lista_req
@@ -152,8 +138,6 @@ CREATE TABLE IF NOT EXISTS Item_lista_req (
 )
 ;
 
-
-
 -- -----------------------------------------------------
 -- Table Entrada
 -- -----------------------------------------------------
@@ -170,8 +154,6 @@ CREATE TABLE IF NOT EXISTS Entrada (
     REFERENCES Fornecedor (ID_fornecedor)
 )
 ;
-
-
 -- -----------------------------------------------------
 -- Table Item_lista_ent
 -- -----------------------------------------------------
@@ -193,9 +175,6 @@ CREATE TABLE IF NOT EXISTS Item_lista_ent (
     REFERENCES Material (ID_material , Info_Material_ID_material)
 )
 ;
-
-
-
 -- -----------------------------------------------------
 -- Table Tel_func
 -- -----------------------------------------------------
@@ -209,9 +188,6 @@ CREATE TABLE IF NOT EXISTS Tel_func (
     REFERENCES Funcionario (ID_func)
 )
 ;
-
-
-
 
 -- -----------------------------------------------------
 -- Table Tel_fornec
@@ -228,8 +204,6 @@ CREATE TABLE IF NOT EXISTS Tel_fornec (
 )
 ;
 
-
-
 -- -----------------------------------------------------
 -- Table Almoxarife
 -- -----------------------------------------------------
@@ -245,7 +219,6 @@ CREATE TABLE IF NOT EXISTS Almoxarife (
 )
 ;
 
-
 -- -----------------------------------------------------
 -- Table Local_armazenamento
 -- -----------------------------------------------------
@@ -256,7 +229,6 @@ CREATE TABLE IF NOT EXISTS Local_armazenamento (
   nome VARCHAR(45) NOT NULL,
   PRIMARY KEY (setor, nome))
 ;
-
 
 -- -----------------------------------------------------
 -- Table Trabalha
@@ -278,8 +250,6 @@ CREATE TABLE IF NOT EXISTS Trabalha (
     REFERENCES Almoxarife (Funcionario_ID_func)
 )
 ;
-
-
 
 -- -----------------------------------------------------
 -- Table Armazena
